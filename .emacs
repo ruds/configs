@@ -23,7 +23,7 @@
       "Advise viper-maybe-checkout to ignore svn files."
       (let ((file (expand-file-name (buffer-file-name buf))))
         (when (and (featurep 'vc-hooks)
-                   (not (memq (vc-backend file) '(nil Git SVN))))
+                   (not (memq (vc-backend file) '(nil Git SVN Hg))))
           ad-do-it)))
 
 (show-paren-mode 1)
@@ -71,7 +71,7 @@
  '(compile-command "ant -find build.xml")
  '(dabbrev-case-fold-search nil)
  '(inhibit-startup-screen t)
- '(latex-run-commane "pdflatex")
+ '(latex-run-command "pdflatex")
  '(make-backup-files nil)
  '(safe-local-variable-values (quote ((buffer-file-coding-system . utf-8-unix))))
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
