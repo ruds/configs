@@ -46,11 +46,17 @@
 (c-add-style "my-c-style"
 	     '((c-basic-offset . 2)
 	       (c-offsets-alist . ((innamespace . 0)
+                                   (case-label . *)
+                                   (statement-case-intro . *)
 				   (access-label . /)
 				   (member-init-intro . ++)
 				   (arglist-intro . ++)))))
 (defun my-c-mode-hook ()
   (local-set-key "\C-c\C-f" 'compile)
+  (local-set-key ";" 'self-insert-command)
+  (local-set-key "(" 'self-insert-command)
+  (local-set-key ")" 'self-insert-command)
+  (local-set-key "," 'self-insert-command)
   (c-set-style "my-c-style"))
 (add-hook 'c-mode-common-hook 'my-c-mode-hook)
 
