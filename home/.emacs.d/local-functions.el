@@ -25,12 +25,15 @@
   (interactive "bbuffer: \nMrepo: ")
   (let* ((buf (get-buffer buffer-or-name))
          (f (expand-file-name (buffer-file-name buf)))
-         (root (expand-file-name (vc-find-root f ".hg")))
-         (path (substring f (length root)))
-         (new-path (expand-file-name (concat root "../" new-repo "/" path))))
-    (when (file-readable-p new-path)
-        (kill-buffer buf)
-        (find-file new-path))))
+         (r (vc-find-root f ".hg")))
+    (when r
+      (let* ((root (expand-file-name r))
+             (path (substring f (length root)))
+             (new-path
+              (expand-file-name (concat root "../" new-repo "/" path))))
+        (when (file-readable-p new-path)
+          (kill-buffer buf)
+          (find-file new-path))))))
 
 (defun ascend-to-build-xml (dir)
   "Find a directory between dir and '/' that contains 'build.xml' and return its name. If none exists, returns nil."
