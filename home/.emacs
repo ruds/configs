@@ -12,12 +12,10 @@
 (require 'clojure-mode)
 
 (load "~/.emacs.d/local-functions.el")
-(load "/opt/local/share/emacs/site-lisp/haskell-mode-2.4/haskell-site-file")
-(add-to-list 'load-path "~/Projects/rust/src/etc/emacs/")
-(require 'rust-mode)
-(defun my-haskell-mode-hook ()
-  (setq indent-tabs-mode nil))
-(add-hook 'haskell-mode-hook 'my-haskell-mode-hook)
+;;(require 'rust-mode)
+;;(defun my-haskell-mode-hook ()
+;;  (setq indent-tabs-mode nil))
+;;(add-hook 'haskell-mode-hook 'my-haskell-mode-hook)
 
 (defadvice viper-maybe-checkout (around viper-svn-checkin-fix activate)
       "Advise viper-maybe-checkout to ignore svn files."
