@@ -3,6 +3,8 @@
 (setq viper-mode t)
 (require 'viper)
 
+(prefer-coding-system 'utf-8)
+
 (let ((default-directory "~/.emacs.d/site-lisp/"))
   (normal-top-level-add-to-load-path '("."))
   (normal-top-level-add-subdirs-to-load-path))
@@ -68,22 +70,23 @@
 (add-hook 'rust-mode-hook 'my-rust-mode-hook)
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(compile-command "ant -find build.xml")
  '(dabbrev-case-fold-search nil)
  '(inhibit-startup-screen t)
  '(latex-run-command "pdflatex")
  '(make-backup-files nil)
  '(safe-local-variable-values (quote ((buffer-file-coding-system . utf-8-unix))))
- '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
+ '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
+ '(viper-want-ctl-h-help t))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 (require 'color-theme)
