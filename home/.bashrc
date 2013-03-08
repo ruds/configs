@@ -1,5 +1,3 @@
-alias emacs='/opt/local/bin/emacs'
-alias emacsclient='/opt/local/bin/emacsclient'
 alias ls='ls -F'
 export EDITOR=vim
 
