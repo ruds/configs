@@ -6,3 +6,6 @@ export CLASSPATH=".:$CLASSPATH"
 export PYTHONPATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/
 # Finished adapting your PATH environment variable for use with MacPorts.
 
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
