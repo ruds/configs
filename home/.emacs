@@ -63,8 +63,8 @@
 (c-add-style "my-c-style"
 	     '((c-basic-offset . 2)
 	       (c-offsets-alist . ((innamespace . 0)
-                                   (case-label . *)
-                                   (statement-case-intro . *)
+                                   (case-label . +)
+                                   (statement-case-intro . +)
 				   (access-label . /)
 				   (member-init-intro . ++)
 				   (arglist-intro . ++)))))

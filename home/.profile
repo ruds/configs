@@ -5,5 +5,8 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 export GOPATH=$HOME/go
 
-source $HOME/.bashrc
 . /Users/ruds/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
