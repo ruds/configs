@@ -20,6 +20,23 @@
                                                  (buffer-file-name buf)))
                                     (hg-maybe-reopen-in-repo buf new-repo))))))
 
+(defun reopen-all-buffers ()
+  "Loop through all open buffers; if a buffer is modified, reopen it."
+  (interactive)
+  (let ((output-buffer (get-buffer-create "*reopened*"))
+        (reopened-buffers
+         (mapcar #'buffer-name 
+                 (delq nil
+                       (loop for buf in (buffer-list)
+                             unless (verify-visited-file-modtime buf)
+                             collect (let ((file-name (buffer-file-name buf)))
+                                       (kill-buffer buf)
+                                       (find-file file-name)))))))
+    (with-current-buffer output-buffer
+      (erase-buffer)
+      (insert (mapconcat 'identity reopened-buffers "\n")))
+    (switch-to-buffer output-buffer)))
+
 (defun hg-maybe-reopen-in-repo (buffer-or-name new-repo)
   "If the file visited in buffer-or-name is also in the HG repository new-repo, kill the buffer and visit the file in new-repo."
   (interactive "bbuffer: \nMrepo: ")
