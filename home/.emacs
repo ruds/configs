@@ -4,6 +4,7 @@
 
 (prefer-coding-system 'utf-8)
 
+(add-to-list 'load-path "~/.emacs.d/cc-mode/")
 (let ((default-directory "~/.emacs.d/site-lisp/"))
   (setq load-path
         (append
@@ -71,9 +72,14 @@
 (defun my-c-mode-hook ()
   (local-set-key "\C-c\C-f" 'compile)
   (local-set-key ";" 'self-insert-command)
+  (local-set-key "<" 'self-insert-command)
+  (local-set-key ">" 'self-insert-command)
+  (local-set-key "(" 'self-insert-command)
   (local-set-key "(" 'self-insert-command)
   (local-set-key ")" 'self-insert-command)
   (local-set-key "," 'self-insert-command)
+  (local-set-key "{" 'self-insert-command)
+  (local-set-key "}" 'self-insert-command)
   (c-set-style "my-c-style"))
 (add-hook 'c-mode-common-hook 'my-c-mode-hook)
 
@@ -91,6 +97,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(compilation-skip-threshold 2)
  '(compile-command "ant -find build.xml")
  '(custom-enabled-themes (quote (whiteboard)))
  '(dabbrev-case-fold-search nil)
