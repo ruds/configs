@@ -55,6 +55,7 @@
 (defun my-c-mode-hook ()
   (local-set-key "\C-c\C-f" 'compile)
   (local-set-key ";" 'self-insert-command)
+  (local-set-key ":" 'self-insert-command)
   (local-set-key "<" 'self-insert-command)
   (local-set-key ">" 'self-insert-command)
   (local-set-key "(" 'self-insert-command)
