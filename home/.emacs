@@ -1,23 +1,26 @@
 ;; Poor little emacs
-(tool-bar-mode -1)
 (setq viper-mode t)
 (require 'viper)
 
 (let ((default-directory "~/.emacs.d/site-lisp/"))
-  (normal-top-level-add-to-load-path '("."))
-  (normal-top-level-add-subdirs-to-load-path))
+  (setq load-path
+        (append
+         (let ((load-path (copy-sequence load-path))) ;; Shadow
+           (normal-top-level-add-to-load-path '("."))
+           (normal-top-level-add-subdirs-to-load-path))
+         load-path)))
 
 (require 'uniquify)
 (require 'ffap)
 (require 'clojure-mode)
 
 (load "~/.emacs.d/local-functions.el")
-(load "/opt/local/share/emacs/site-lisp/haskell-mode-2.4/haskell-site-file")
+;;(load "/opt/local/share/emacs/site-lisp/haskell-mode-2.4/haskell-site-file")
 (add-to-list 'load-path "~/Projects/rust/src/etc/emacs/")
-(require 'rust-mode)
-(defun my-haskell-mode-hook ()
-  (setq indent-tabs-mode nil))
-(add-hook 'haskell-mode-hook 'my-haskell-mode-hook)
+;;(require 'rust-mode)
+;;(defun my-haskell-mode-hook ()
+;;  (setq indent-tabs-mode nil))
+;;(add-hook 'haskell-mode-hook 'my-haskell-mode-hook)
 
 (defadvice viper-maybe-checkout (around viper-svn-checkin-fix activate)
       "Advise viper-maybe-checkout to ignore svn files."
@@ -70,11 +73,12 @@
 (add-hook 'rust-mode-hook 'my-rust-mode-hook)
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(compile-command "ant -find build.xml")
+ '(custom-enabled-themes (quote (whiteboard)))
  '(dabbrev-case-fold-search nil)
  '(inhibit-startup-screen t)
  '(latex-run-command "pdflatex")
@@ -82,12 +86,12 @@
  '(safe-local-variable-values (quote ((buffer-file-coding-system . utf-8-unix))))
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-hober)
+;;(require 'color-theme)
+;;(color-theme-initialize)
+;;(color-theme-hober)
