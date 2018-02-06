@@ -136,3 +136,8 @@ passed to fun after the start and end."
   (if arg
       (base/format-region (region-beginning) (region-end))
     (base/format-buffer)))
+
+(defun base/compile ()
+  "Compile using base/compile-func"
+  (interactive)
+  (funcall base/compile-func))

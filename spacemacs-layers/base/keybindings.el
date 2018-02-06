@@ -1,6 +1,6 @@
 (spacemacs/set-leader-keys
   "of" 'base/format-region-or-buffer
-  "oF" (lambda () (interactive) (funcall base/compile-func))
+  "oF" 'base/compile
   "oc" 'comment-region
   "op" 'transpose-windows
   "ot" 'find-file-at-point
