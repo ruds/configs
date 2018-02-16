@@ -65,6 +65,7 @@ values."
    dotspacemacs-additional-packages
    '(
      cl
+     compile
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -72,6 +73,7 @@ values."
    dotspacemacs-excluded-packages
    '(
      evil-escape
+     evil-search-highlight-persist
      )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -326,6 +328,14 @@ you should place your code here."
   (setq frame-title-format '(" %*%+ %b  "))
   (setq require-final-newline t)
   (setq next-line-add-newlines nil)
+  (sp-pair "{" nil :unless '(sp-in-string-p))
+  (sp-pair "\\\"" nil :unless '(sp-in-string-p))
+  (sp-pair "(" nil :unless '(sp-in-string-p))
+  (sp-pair "'" nil :unless '(sp-in-string-p))
+  (sp-pair "[" nil :unless '(sp-in-string-p))
+  (sp-pair "`" nil :unless '(sp-in-string-p))
+  (add-to-list 'display-buffer-alist
+               '("\\*compilation\\*" . (nil (reusable-frames . t))))
 
   ;; Essentially I never want a frame to take less than the maximum
   ;; possible vertical space, and manual resizing is annoying and slow
@@ -344,7 +354,7 @@ you should place your code here."
  '(comment-auto-fill-only-comments t)
  '(compilation-error-regexp-alist
    (quote
-    (google3-build-log-parser-info google3-build-log-parser-warning google3-build-log-parser-error google-blaze-error google-log-error google-log-warning google-log-info google-log-fatal-message google-forge-python gunit-stack-trace absoft ada aix ant bash borland python-tracebacks-and-caml comma cucumber msft edg-1 edg-2 epc ftnchek iar ibm irix java jikes-file maven jikes-line clang-include gcc-include ruby-Test::Unit gnu lcc makepp mips-1 mips-2 msft omake oracle perl php rxp sparc-pascal-file sparc-pascal-line sparc-pascal-example sun sun-ada watcom 4bsd gcov-file gcov-header gcov-nomark gcov-called-line gcov-never-called perl--Pod::Checker perl--Test perl--Test2 perl--Test::Harness weblint guile-file guile-line)))
+    (google3-build-log-parser-info google3-build-log-parser-warning google3-build-log-parser-error google3-build-log-parser-info google3-build-log-parser-warning google3-build-log-parser-error google-blaze-error google-log-error google-log-warning google-log-info google-log-fatal-message google-forge-python gunit-stack-trace absoft ada aix ant bash borland python-tracebacks-and-caml comma cucumber msft edg-1 edg-2 epc ftnchek iar ibm irix java jikes-file maven jikes-line clang-include gcc-include ruby-Test::Unit gnu lcc makepp mips-1 mips-2 msft omake oracle perl php rxp sparc-pascal-file sparc-pascal-line sparc-pascal-example sun sun-ada watcom 4bsd gcov-file gcov-header gcov-nomark gcov-called-line gcov-never-called perl--Pod::Checker perl--Test perl--Test2 perl--Test::Harness weblint guile-file guile-line)))
  '(compilation-scroll-output t)
  '(compile-command "rabbit test")
  '(dabbrev-case-fold-search nil)
@@ -358,7 +368,18 @@ you should place your code here."
  '(package-selected-packages
    (quote
     (disaster cmake-mode clang-format p4 ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-make helm helm-core google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy)))
- '(safe-local-variable-values (quote ((auto-recompile . t)))))
+ '(popwin:special-display-config
+   (quote
+    (("^*WoMan.+*$" :regexp t :position bottom)
+     ("*nosetests*" :position bottom :noselect nil :dedicated t :stick t)
+     ("*grep*" :position bottom :noselect nil :dedicated t :stick t)
+     ("*ert*" :position bottom :noselect nil :dedicated t :stick t)
+     (" *undo-tree*" :height 0.4 :position bottom :noselect nil :dedicated t :stick t)
+     ("*Async Shell Command*" :position bottom :noselect nil :dedicated t :stick t)
+     ("*Shell Command Output*" :position bottom :noselect nil :dedicated t :stick t)
+     ("*Help*" :height 0.4 :position bottom :noselect t :dedicated t :stick t))))
+ '(safe-local-variable-values (quote ((auto-recompile . t))))
+ '(sp-escape-quotes-after-insert nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
