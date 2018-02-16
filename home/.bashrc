@@ -21,7 +21,9 @@ export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=1000000
 export HISTFILESIZE=1000000
 export HISTTIMEFORMAT='%G %T '
-export LANG=C
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_COLLATE=C
 
 shopt -s checkwinsize
 shopt -s histappend
