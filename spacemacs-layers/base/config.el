@@ -15,3 +15,8 @@
     (go-mode . go-fmt)))
 
 (add-to-list 'auto-mode-alist '("patch$" . diff-mode))
+
+(defun base/c-mode-common-hook ()
+  (modify-syntax-entry ?_ "w"))
+
+(add-hook 'c-mode-common-hook 'base/c-mode-common-hook)
