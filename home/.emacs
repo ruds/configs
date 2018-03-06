@@ -15,6 +15,7 @@
 (require 'clojure-mode)
 
 (load "~/.emacs.d/local-functions.el")
+(load "/opt/local/libexec/llvm-4.0/share/clang/clang-format.el")
 ;;(load "/opt/local/share/emacs/site-lisp/haskell-mode-2.4/haskell-site-file")
 (add-to-list 'load-path "~/Projects/rust/src/etc/emacs/")
 ;;(require 'rust-mode)
@@ -37,11 +38,22 @@
 (global-set-key "\C-c>" (lambda () (interactive) (indent-rigidly-n 2)))
 (global-set-key "\C-c<" (lambda () (interactive) (indent-rigidly-n -2)))
 (global-set-key "\C-cp" 'transpose-windows)
+(global-set-key "\C-cf" 
+    (lambda (&optional arg)
+        (interactive "P")
+        (if arg (clang-format-region (region-beginning) (region-end))
+          (clang-format-buffer))))
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("SConstruct\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("SConscript\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.clj\'" . clojure-mode))
+
+(autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
+(autoload 'camldebug "camldebug" "Run the Caml debugger" t)
+(add-to-list 'auto-mode-alist 
+    '("\\.ml[ily?$" . tuareg-mode) 
+    '("\\.topml$" . tuareg-mode))
 
 (setq-default indent-tabs-mode nil)
 
@@ -81,7 +93,7 @@
  '(custom-enabled-themes (quote (whiteboard)))
  '(dabbrev-case-fold-search nil)
  '(inhibit-startup-screen t)
- '(latex-run-command "pdflatex")
+ '(latex-run-command "xelatex")
  '(make-backup-files nil)
  '(safe-local-variable-values (quote ((buffer-file-coding-system . utf-8-unix))))
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))

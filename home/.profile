@@ -3,4 +3,7 @@
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
 
+export GOPATH=$HOME/go
+
 source $HOME/.bashrc
+. /Users/ruds/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true

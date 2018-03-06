@@ -3,3 +3,4 @@
 (setq viper-want-ctl-h-help t)
 
 (define-key viper-vi-global-user-map "\C-v" 'scroll-up)
+(define-key viper-vi-global-user-map "\C-u" 'universal-argument)
