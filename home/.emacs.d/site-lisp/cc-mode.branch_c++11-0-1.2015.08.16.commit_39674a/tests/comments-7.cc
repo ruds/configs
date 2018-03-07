@@ -1,5 +1,0 @@
-//
-class C {
-public:
-private:
-};
