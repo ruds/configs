@@ -1,9 +1,9 @@
 escape ^d^d
 altscreen on
 
-+# Wait no more than 5 ms to detect a control sequence.
-+# Necessary to make vim use non-maddening (no pause after esc).
-+maptimeout 5
-+
-+# Let C-s / C-q work
-+defflow off
+# Wait no more than 5 ms to detect a control sequence.
+# Necessary to make vim use non-maddening (no pause after esc).
+maptimeout 5
+
+# Let C-s / C-q work
+defflow off
