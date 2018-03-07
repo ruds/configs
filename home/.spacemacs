@@ -55,8 +55,6 @@ values."
      ;; version-control
      (c-c++ :variables c-c++-default-mode-for-headers 'c++-mode)
      (base :location local)
-     (google :location local)
-     (desktop :location local)
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
