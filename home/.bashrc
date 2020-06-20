@@ -1,6 +1,7 @@
 alias emacs='/opt/local/bin/emacs'
 alias emacsclient='/opt/local/bin/emacsclient'
 alias ls='ls -F'
+alias tclsh='rlwrap tclsh'
 export EDITOR=vim
 
 export HISTIGNORE="&:ls:[bf]g:exit"

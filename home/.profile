@@ -11,3 +11,8 @@ export GRADLE_HOME=/opt/local/share/java/gradle
 if [ -f ~/.bashrc ]; then
   . ~/.bashrc
 fi
+
+# MacPorts Installer addition on 2019-09-09_at_18:31:58: adding an appropriate MANPATH variable for use with MacPorts.
+export MANPATH="/opt/local/share/man:$MANPATH"
+# Finished adapting your MANPATH environment variable for use with MacPorts.
+

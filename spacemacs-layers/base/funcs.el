@@ -140,4 +140,4 @@ passed to fun after the start and end."
 (defun base/compile ()
   "Compile using base/compile-func"
   (interactive)
-  (funcall base/compile-func))
+  (call-interactively base/compile-func))
