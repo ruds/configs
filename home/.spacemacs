@@ -34,7 +34,8 @@ values."
      )
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(rust
+     kotlin
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -44,8 +45,8 @@ values."
      ;; auto-completion
      ;; better-defaults
      emacs-lisp
-     ;; git
-     ;; markdown
+     git
+     markdown
      ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -62,10 +63,12 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
-     cl
+     cl-lib
      compile
      groovy-mode
-     kotlin-mode
+     apheleia
+     highlight
+     column-marker
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -328,19 +331,23 @@ you should place your code here."
   (setq frame-title-format '(" %*%+ %b  "))
   (setq require-final-newline t)
   (setq next-line-add-newlines nil)
-  (sp-pair "{" nil :unless '(sp-in-string-p))
-  (sp-pair "\\\"" nil :unless '(sp-in-string-p))
-  (sp-pair "(" nil :unless '(sp-in-string-p))
-  (sp-pair "'" nil :unless '(sp-in-string-p))
-  (sp-pair "[" nil :unless '(sp-in-string-p))
-  (sp-pair "`" nil :unless '(sp-in-string-p))
+  ;(sp-pair "{" nil :unless '(sp-in-string-p))
+  ;(sp-pair "\\\"" nil :unless '(sp-in-string-p))
+  ;(sp-pair "(" nil :unless '(sp-in-string-p))
+  ;(sp-pair "'" nil :unless '(sp-in-string-p))
+  ;(sp-pair "[" nil :unless '(sp-in-string-p))
+  ;(sp-pair "`" nil :unless '(sp-in-string-p))
   (add-to-list 'display-buffer-alist
                '("\\*compilation\\*" . (nil (reusable-frames . t))))
+  (apheleia-global-mode +1)
 
   ;; Essentially I never want a frame to take less than the maximum
   ;; possible vertical space, and manual resizing is annoying and slow
   ;; over ssh.
   (add-hook 'after-make-frame-functions 'maximize-frame-vertically)
+  (when (eq system-type 'darwin)
+    (setq mac-command-modifier 'meta)
+    (setq mac-option-modifier 'super))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -386,3 +393,91 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(apheleia-formatters
+   '((black "black" "-")
+     (brittany "brittany")
+     (clang-format "clang-format")
+     (mix-format "mix" "format" "-")
+     (gofmt "gofmt")
+     (google-java-format "google-java-format" "-")
+     (isort "isort" "--stdout" "-")
+     (latexindent "latexindent")
+     (ocamlformat "ocamlformat" "-" "--name" filepath)
+     (prettier npx "prettier" "--stdin-filepath" filepath)
+     (rustfmt "rustfmt" "--unstable-features" "--skip-children" "--quiet" "--emit" "stdout")
+     (terraform "terraform" "fmt" "-")
+     (ktlint "ktlint" "-F" "--stdin")))
+ '(apheleia-mode-alist
+   '((kotlin-mode . ktlint)
+     (cc-mode . clang-format)
+     (c-mode . clang-format)
+     (c++-mode . clang-format)
+     (css-mode . prettier)
+     (elixir-mode . mix-format)
+     (go-mode . gofmt)
+     (haskell-mode . brittany)
+     (html-mode . prettier)
+     (java-mode . google-java-format)
+     (js3-mode . prettier)
+     (js-mode . prettier)
+     (json-mode . prettier)
+     (latex-mode . latexindent)
+     (LaTeX-mode . latexindent)
+     (php-mode)
+     (python-mode . black)
+     (ruby-mode . prettier)
+     (rustic-mode . rustfmt)
+     (rust-mode . rustfmt)
+     (sass-mode . prettier)
+     (terraform-mode . terraform)
+     (TeX-latex-mode . latexindent)
+     (TeX-mode . latexindent)
+     (tuareg-mode . ocamlformat)
+     (typescript-mode . prettier)
+     (web-mode . prettier)
+     (yaml-mode . prettier)))
+ '(base/compile-func 'base/dominating-compile)
+ '(comment-auto-fill-only-comments t)
+ '(compilation-error-regexp-alist
+   '(gunit-stack-trace absoft ada aix ant bash borland python-tracebacks-and-caml comma cucumber msft edg-1 edg-2 epc ftnchek iar ibm irix java jikes-file maven jikes-line clang-include gcc-include ruby-Test::Unit gnu lcc makepp mips-1 mips-2 msft omake oracle perl php rxp sparc-pascal-file sparc-pascal-line sparc-pascal-example sun sun-ada watcom 4bsd gcov-file gcov-header gcov-nomark gcov-called-line gcov-never-called perl--Pod::Checker perl--Test perl--Test2 perl--Test::Harness weblint guile-file guile-line))
+ '(compilation-scroll-output t)
+ '(compile-command "rabbit test")
+ '(dabbrev-case-fold-search nil)
+ '(evil-want-Y-yank-to-eol nil)
+ '(google-paths-depot-roots
+   '(google-paths-find-depot-roots-from-current-buffer "/google/src/head/depot"))
+ '(js2-bounce-indent-p nil)
+ '(js2-mirror-mode nil)
+ '(latex-run-command "xelatex")
+ '(package-selected-packages
+   '(apheleia groovy-mode disaster cmake-mode clang-format p4 ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-make helm helm-core google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy))
+ '(popwin:special-display-config
+   '(("^*WoMan.+*$" :regexp t :position bottom)
+     ("*nosetests*" :position bottom :noselect nil :dedicated t :stick t)
+     ("*grep*" :position bottom :noselect nil :dedicated t :stick t)
+     ("*ert*" :position bottom :noselect nil :dedicated t :stick t)
+     (" *undo-tree*" :height 0.4 :position bottom :noselect nil :dedicated t :stick t)
+     ("*Async Shell Command*" :position bottom :noselect nil :dedicated t :stick t)
+     ("*Shell Command Output*" :position bottom :noselect nil :dedicated t :stick t)
+     ("*Help*" :height 0.4 :position bottom :noselect t :dedicated t :stick t)))
+ '(rust-rustfmt-bin "/Users/ruds/.cargo/bin/rustfmt")
+ '(safe-local-variable-values '((auto-recompile . t)))
+ '(sp-escape-quotes-after-insert nil)
+ '(vc-follow-symlinks nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)

@@ -141,3 +141,14 @@ passed to fun after the start and end."
   "Compile using base/compile-func"
   (interactive)
   (call-interactively base/compile-func))
+
+(defun base/dominating-compile ()
+  "Find a file from base/build-scripts in default-directory or above"
+  (interactive)
+  (let ((default-directory (locate-dominating-file
+                    default-directory
+                    (lambda (dir)
+                      (find-if (lambda (f)
+                                 (file-exists-p (expand-file-name f dir)))
+                               base/build-scripts)))))
+    (call-interactively #'compile)))
