@@ -1,0 +1,13 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("mastering-emacs-v4.pdf"
+ (filename . "~/Downloads/mastering-emacs-v4.pdf")
+ (position . 1)
+ (page . 154)
+ (slice)
+ (size . fit-width)
+ (origin 0.0 . 0.2557471264367816)
+ (handler . pdf-view-bookmark-jump-handler))
+)

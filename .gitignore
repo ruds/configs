@@ -1,0 +1,4 @@
+home/.emacs.d
+!home/.emacs.d/init.el
+!home/.emacs.d/custom.el
+!home/.emacs.d/elpa
