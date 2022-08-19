@@ -2,12 +2,25 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("mastering-emacs-v4.pdf"
+(("Scanning · Crafting Interpreters"
+ (front-context-string . "\n    // Look for")
+ (rear-context-string . "())) advance();\n")
+ (position . 30300)
+ (location . "https://craftinginterpreters.com/scanning.html")
+ (handler . eww-bookmark-jump))
+("(org) Weekly/daily agenda"
+ (front-context-string . "       :CATEGORY")
+ (rear-context-string . "   :PROPERTIES:\n")
+ (position . 328827)
+ (filename . "/Applications/Emacs.app/Contents/Resources/info/org")
+ (info-node . "Weekly/daily agenda")
+ (handler . Info-bookmark-jump))
+("mastering-emacs-v4.pdf"
  (filename . "~/Downloads/mastering-emacs-v4.pdf")
  (position . 1)
- (page . 154)
+ (page . 272)
  (slice)
- (size . fit-width)
- (origin 0.0 . 0.2557471264367816)
+ (size . fit-height)
+ (origin 0.0 . 0.0)
  (handler . pdf-view-bookmark-jump-handler))
 )
