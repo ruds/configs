@@ -1,0 +1,5 @@
+[user]
+	name = Matt Rudary
+	email = matt@rudary.com
+[core]
+	excludesfile = /Users/ruds/.gitignore
